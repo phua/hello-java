@@ -1,0 +1,23 @@
+(jdee-project-file-version "1.0")
+(jdee-set-variables
+ '(jdee-compile-option-directory "./target/main/classes")
+ '(jdee-ant-args "-Dproject.name=HelloWorld -emacs")
+ '(jdee-ant-buildfile "build.xml")
+ '(jdee-ant-read-buildfile nil)
+ '(jdee-ant-read-target t)
+ '(jdee-ant-interactive-buildfile "build.xml")
+ '(jdee-run-working-directory ".")
+ '(jdee-run-application-class "HelloWorld")
+ '(jdee-run-option-vm-args (quote ("-Djava.library.path=./lib")))
+ '(jdee-run-option-application-args (quote ("./src/main/resources")))
+ '(jdee-db-option-vm-args jdee-run-option-vm-args)
+ '(jdee-db-option-application-args jdee-run-option-application-args)
+ '(jdee-junit-working-directory jdee-run-working-directory)
+
+ '(jdee-sourcepath (quote ("./src/main/java" "./src/test/java" "$JAVA_HOME/src.zip")))
+ '(jdee-global-classpath (quote ("./src/main/java" "./src/main/resources" "./target/main/classes" "./src/test/java" "./src/test/resources" "./target/test/classes")))
+ '(jdee-built-class-path (quote ("./target/main/classes" "./target/test/classes")))
+
+ '(jdee-xref-db-base-directory "./xrefdb")
+ '(jdee-xref-store-prefixes (quote ("com.example")))
+ '(jdee-xref-cache-size 3))
