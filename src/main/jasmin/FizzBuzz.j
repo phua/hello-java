@@ -1,3 +1,8 @@
+;; Write a program that prints the numbers from 1 to 100. But for
+;; multiples of three print "Fizz" instead of the number and for the
+;; multiples of five print "Buzz". For numbers which are multiples of
+;; both three and five print "FizzBuzz".
+
 .class public final FizzBuzz
 .super java/lang/Object
 
@@ -39,9 +44,11 @@
         irem
         istore 4
 
+        ;; if (f == 0) goto Fizz
         iload_3
         ifeq Fizz
 
+        ;; if (b == 0) goto Fizz
         iload 4
         ifeq Fizz
 
@@ -52,6 +59,7 @@
         invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V
 
     Fizz:
+        ;; if (f != 0) goto Buzz
         iload_3
         ifne Buzz
 
@@ -61,6 +69,7 @@
         invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V
 
     Buzz:
+        ;; if (b != 0) goto Cont
         iload 4
         ifne Cont
 
@@ -78,6 +87,7 @@
         ;; i++
         iinc 2 1
 
+        ;; if (i < 100) goto Loop
         iload_2
         bipush 100
         if_icmple Loop
