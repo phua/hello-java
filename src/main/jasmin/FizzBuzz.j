@@ -6,13 +6,44 @@
 .class public final FizzBuzz
 .super java/lang/Object
 
+.field private static final N I = 100
+
+.field private final n I
+
 .method public <init>()V
+    .limit stack 2
+
+    ;; this(N)
     aload_0
-    invokenonvirtual java/lang/Object/<init>()V
+    getstatic FizzBuzz/N I
+    invokespecial FizzBuzz/<init>(I)V
+
     return
 .end method
 
-.method public static main([Ljava/lang/String;)V
+.method public <init>(I)V
+    .limit stack 2
+    .limit locals 2
+
+    ;; super()
+    aload_0
+    invokenonvirtual java/lang/Object/<init>()V
+
+    ;; this.n = n
+    aload_0
+    iload_1
+    putfield FizzBuzz/n I
+
+    return
+.end method
+
+.method public getN()I
+    aload_0
+    getfield FizzBuzz/n I
+    ireturn
+.end method
+
+.method public run()V
     .limit stack 3
     .limit locals 3
 
@@ -69,10 +100,23 @@
         ;; i++
         iinc 2 1
 
-        ;; if (i < 100) goto Fizz
+        ;; if (i < n) goto Fizz
         iload_2
-        bipush 100
+        aload_0
+        invokevirtual FizzBuzz/getN()I
         if_icmple Fizz
+
+    return
+.end method
+
+.method public static main([Ljava/lang/String;)V
+    .limit stack 2
+
+    ;; new FizzBuzz().run();
+    new FizzBuzz
+    dup
+    invokespecial FizzBuzz/<init>()V
+    invokevirtual FizzBuzz/run()V
 
     return
 .end method
