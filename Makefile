@@ -5,6 +5,7 @@ CFR=java -jar $(HOME)/local/jars/cfr.jar
 
 # SOURCES=$(wildcard src/main/java/**/*.java)
 SOURCES=$(shell find src/main/java -name \*.java)
+JAS_SOURCES=$(shell find src/main/jasmin -name \*.j)
 
 all: compile disassemble decompile
 
@@ -13,7 +14,7 @@ compile:
 	javac -d target/main/classes $(SOURCES)
 
 	mkdir -p target/jasmin/classes
-	$(JASMIN) -d target/jasmin/classes src/main/jasmin/HelloWorld.j
+	$(JASMIN) -g -d target/jasmin/classes $(JAS_SOURCES)
 
 dist: compile
 	mkdir -p target

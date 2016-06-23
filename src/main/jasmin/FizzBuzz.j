@@ -3,6 +3,7 @@
 ;; multiples of five print "Buzz". For numbers which are multiples of
 ;; both three and five print "FizzBuzz".
 
+;; .bytecode 52.0
 .class public final FizzBuzz
 .super java/lang/Object
 
@@ -50,62 +51,64 @@
     getstatic java/lang/System/out Ljava/io/PrintStream;
     astore_1
 
+    .var 2 is i I from Fizz to Return
+
     ;; int i = 1
     iconst_1
     istore_2
 
-    Fizz:
-        ;; if ((↓ = i % 3) != 0) goto Buzz
-        iload_2
-        iconst_3
-        irem
-        dup
-        ifne Buzz
+Fizz:
+    ;; if ((↓ = i % 3) != 0) goto Buzz
+    iload_2
+    iconst_3
+    irem
+    dup
+    ifne Buzz
 
-        ;; System.out.print("Fizz")
-        aload_1
-        ldc "Fizz"
-        invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V
+    ;; System.out.print("Fizz")
+    aload_1
+    ldc "Fizz"
+    invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V
 
-    Buzz:
-        ;; if (i % 5 != 0) goto Self
-        iload_2
-        iconst_5
-        irem
-        ifne Self
+Buzz:
+    ;; if (i % 5 != 0) goto Self
+    iload_2
+    iconst_5
+    irem
+    ifne Self
 
-        ;; System.out.print("Buzz")
-        aload_1
-        ldc "Buzz"
-        invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V
+    ;; System.out.print("Buzz")
+    aload_1
+    ldc "Buzz"
+    invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V
 
-        pop
-        goto Cont
+    pop
+    goto NewL
 
-    Self:
-        ;; if (↑ == 0) goto Cont
-        ifeq Cont
+Self:
+    ;; if (↑ == 0) goto NewL
+    ifeq NewL
 
-        ;; System.out.print(i)
-        aload_1
-        iload_2
-        invokevirtual java/io/PrintStream/print(I)V
+    ;; System.out.print(i)
+    aload_1
+    iload_2
+    invokevirtual java/io/PrintStream/print(I)V
 
-    Cont:
-        ;; System.out.print("\n")
-        aload_1
-        ldc "\n"
-        invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V
+NewL:
+    ;; System.out.println()
+    aload_1
+    invokevirtual java/io/PrintStream/println()V
 
-        ;; i++
-        iinc 2 1
+    ;; i++
+    iinc 2 1
 
-        ;; if (i < n) goto Fizz
-        iload_2
-        aload_0
-        invokevirtual FizzBuzz/getN()I
-        if_icmple Fizz
+    ;; if (i < n) goto Fizz
+    iload_2
+    aload_0
+    invokevirtual FizzBuzz/getN()I
+    if_icmple Fizz
 
+Return:
     return
 .end method
 
